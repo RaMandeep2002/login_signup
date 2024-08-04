@@ -39,7 +39,7 @@ function RegisterUser() {
       localStorage.clear();
       localStorage.setItem('token', signupSuccess.token);
       localStorage.setItem('userId', signupSuccess.user._id);
-      navigation('/login');
+      navigation('/otp');
     } else if (signupSuccess != null) {
       console.log(signupSuccess);
     }
@@ -50,14 +50,15 @@ function RegisterUser() {
   // }, [signupSuccess]);
 
   return (
+    // bgimage
     <div className="min-h-screen flex">
-      <div className="flex-1 hidden lg:flex items-center justify-center bg-cover bg-center bgimage">
+      <div className="flex-1 hidden lg:flex items-center justify-center bg-cover bg-center bg-gray-500 bg-opacity-50 bgimage">
         <div className="bg-black bg-opacity-50 p-10 rounded-lg">
           <h2 className="text-4xl font-bold text-white text-center">
-            Welcome Back!
+            Register Now!
           </h2>
           <p className="text-white text-center mt-4">
-            To keep connected with us please login with your personal info
+            Join us and stay connected. Register with your personal information.
           </p>
         </div>
       </div>
@@ -66,10 +67,7 @@ function RegisterUser() {
           <h2 className="text-2xl font-bold text-center text-gray-900">
             Register
           </h2>
-          <div
-            className="space-y-6"
-            //  onSubmit={handleSubmit}
-          >
+          <div className="space-y-6">
             <div>
               <label
                 htmlFor="name"
@@ -84,7 +82,8 @@ function RegisterUser() {
                 required
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                className="block w-full px-3 py-2 mt-1 border rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300"
+                className="block w-full px-3 py-2 mt-1 border rounded-md shadow-sm focus:ring-gray-500 focus:border-gray-700 border-gray-300"
+                autoComplete="off"
               />
             </div>
             <div>
@@ -98,18 +97,18 @@ function RegisterUser() {
                 id="email"
                 name="email"
                 type="email"
+                autoComplete="off"
                 required
                 value={email}
                 onChange={(e) => handleEmailChange(e)}
                 className="block w-full px-3 py-2 mt-1 border rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300"
               />
+              {email.length !== 0 && !isValid ? (
+                <p style={{ color: 'red' }}>Invalid email address</p>
+              ) : (
+                ''
+              )}
             </div>
-            {email.length !== 0 && !isValid ? (
-              <p style={{ color: 'red' }}>Invalid email address</p>
-            ) : (
-              ''
-            )}
-
             <div>
               <label
                 htmlFor="password"
@@ -121,10 +120,11 @@ function RegisterUser() {
                 id="password"
                 name="password"
                 type="password"
+                autoComplete="off"
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="block w-full px-3 py-2 mt-1 border rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300"
+                className="block w-full px-3 py-2 mt-1 border rounded-md shadow-sm focus:ring-gray-700 focus:border-gray-700 border-gray-300"
               />
             </div>
             <div>
@@ -133,10 +133,23 @@ function RegisterUser() {
                 onClick={() => {
                   onSignUpClick();
                 }}
-                className="w-full px-4 py-2 text-white bg-indigo-600 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                className="w-full px-4 py-2 text-white bg-gray-600 rounded-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
               >
                 Register
               </button>
+            </div>
+            <div className="text-sm text-center">
+              <p className="text-gray-600">
+                I You have an account?{' '}
+                <button
+                  onClick={() => {
+                    navigation('/login');
+                  }}
+                  className="text-indigo-600 hover:underline"
+                >
+                  Login here
+                </button>
+              </p>
             </div>
           </div>
         </div>

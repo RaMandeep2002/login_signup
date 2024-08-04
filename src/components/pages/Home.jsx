@@ -1,7 +1,13 @@
+// import React from 'react';
+
+import HeroSection from './HeroSection';
+import TopBar from './TopBar';
+
 function Home() {
   return (
     <div>
-      <p>Home components</p>
+      <TopBar />
+      <HeroSection />
     </div>
   );
 }
