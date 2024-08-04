@@ -43,7 +43,7 @@ function TopBar() {
         <div className="hidden md:flex space-x-4">
           {token ? (
             <button
-              className="bg-red-500 w-[116px] h-[42px] text-white px-4 py-2 rounded"
+              className="w-[116px] h-[42px] text-[#489CDA] px-4 py-2 rounded-full border-2 border-[#489CDA]"
               onClick={() => logout()}
             >
               Logout
